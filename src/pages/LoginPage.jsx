@@ -1,7 +1,4 @@
 import "./loginPage.css";
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { DateCalendar } from '@mui/x-date-pickers/DateCalendar';
 
 export const LoginPage = () => {
     return (
@@ -15,13 +12,10 @@ export const LoginPage = () => {
             <input type="password" id="password" name="password" required />
     
             <div>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <DateCalendar />
-                </LocalizationProvider>
               <button type="submit" className="button">
                 Zaloguj się
               </button>
-              <a href="RegisterPage.jsx" className="button" id="register-button">
+              <a href="/register" className="button" id="register-button">
                 Nie mam jeszcze konta
               </a>
             </div>

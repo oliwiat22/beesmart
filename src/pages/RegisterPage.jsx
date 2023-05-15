@@ -20,8 +20,11 @@ export const RegisterPage = () => {
         <label htmlFor="confirm-password">Potwierdź hasło:</label>
         <input type="password" id="confirm-password" name="confirm-password" required />
 
+        
         <button type="submit" className="button">
+        <a href="/">
           Zarejestruj się
+          </a>
         </button>
       </form>
     </>
