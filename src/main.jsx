@@ -7,6 +7,7 @@ import {
 import './index.css'
 import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage';
+import { SearchingPage } from './pages/SearchingPage';
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/register/",
     element: <RegisterPage />,
+  },
+  {
+    path: "/search/",
+    element: <SearchingPage />,
   },
 ]);
 
