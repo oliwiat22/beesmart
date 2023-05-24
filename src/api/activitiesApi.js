@@ -1,14 +1,7 @@
 import Axios from 'axios';
 
-export const createNewActivity = (name, description, type, location, durationInMinutes) => {
-  const url = 'http://127.0.0.1:5173/';
-  let newActivity = {
-    name:name,
-    description:description,
-    type:type,
-    location:location,
-    durationInMinutes:durationInMinutes
-  };
+export const createNewActivity = (newActivity) => {
+  const url = 'http://localhost:8080/extracurricular/';
 
   return Axios.post(url, newActivity);
 }

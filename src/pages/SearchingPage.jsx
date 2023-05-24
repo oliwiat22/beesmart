@@ -1,11 +1,31 @@
 import { useState } from 'react';
 import './searchingPage.css';
+import { createNewActivity } from '../api/activitiesApi';
 
 export const SearchingPage = () => {
   const [price, setPrice] = useState('');
   const [type, setType] = useState('');
   const [subject, setSubject] = useState('');
   const [searchText, setSearchText] = useState('');
+
+  const addActivity = (e) => {
+    e.preventDefault()
+    let newActivity = {
+      name: subject,
+      description: 'Nauka przedmiotu w domku',
+      type: type,
+      location: '',
+      price: price,
+      durationInMinutes: 60
+    };
+    console.log('activity: ', newActivity)
+    createNewActivity(newActivity)
+      .then((response) => {
+        console.log(response.data);
+      }).catch(error => {
+        console.log(error)
+      })
+  }
 
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
@@ -44,8 +64,8 @@ export const SearchingPage = () => {
           Typ zajęć:
           <select value={type} onChange={handleTypeChange}>
             <option value="">-- Wybierz --</option>
-            <option value="online">Online</option>
-            <option value="stacjonarne">Stacjonarne</option>
+            <option value="ONLINE">Online</option>
+            <option value="IN_PERSON">Stacjonarne</option>
           </select>
         </label>
         <label>
@@ -56,6 +76,7 @@ export const SearchingPage = () => {
           Wyszukaj:
           <input type="text" value={searchText} onChange={handleSearchTextChange} />
         </label>
+        <button onClick={addActivity}>Dodaj activity</button>
         <button type="submit">Szukaj</button>
       </form>
     </div>
