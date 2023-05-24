@@ -5,3 +5,9 @@ export const createNewActivity = (newActivity) => {
 
   return Axios.post(url, newActivity);
 }
+
+export const getActivities = () => {
+  const url = 'http://localhost:8080/extracurricular/';
+
+  return Axios.get(url);
+}

@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './loginPage.css';
+import { login } from '../api/userApi';
 
 export const LoginPage = () => {
   const navigate = useNavigate();
@@ -18,15 +19,19 @@ export const LoginPage = () => {
 
   const handleLogin = (event) => {
     event.preventDefault();
-    
-    // Tutaj dodaj warunek na poprawne dane logowania
-    if (username === 'user' && password === '1234') {
-      // Przeniesienie do strony SearchingPage
-      console.log('sd')
-      navigate('/search');
-    } else {
-      alert('Niepoprawne dane logowania!');
+    const user = {
+      login : username,
+      password : password
     }
+    login(user).then((response) => {
+      if (response.status === 200) {
+        navigate('/activities');
+      } else {
+        alert('Niepoprawne dane logowania!')
+      }
+    }).catch(error => {
+      console.log(error);
+    })
   };
 
 
@@ -35,8 +40,8 @@ export const LoginPage = () => {
           <h1>Cześć!</h1>
           <form onSubmit = {handleLogin}>
 
-            <label>Nazwa użytkownika: <input type ="text" value = {username} onChange={handleUsernameChange} /> </label>
-            <label> Hasło: <input type="password" value = {password} onChange = {handlePasswordChange} /> </label>
+            <label>Nazwa użytkownika: <input type ="text" required value = {username} onChange={handleUsernameChange} /> </label>
+            <label> Hasło: <input type="password" required value = {password} onChange = {handlePasswordChange} /> </label>
 
             <button type ="submit"> Zaloguj się </button>
             <a href='/register' className='button' id='register-button'> Zarejestruj się </a>
