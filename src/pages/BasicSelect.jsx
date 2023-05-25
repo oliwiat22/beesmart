@@ -6,12 +6,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 
-export const BasicSelect = () => {
+export const BasicSelect = ({handleTypeChange}) => {
   const [type, setType] = React.useState('');
 
   const handleChange = (event) => {
     setType(event.target.value);
-    console.log(type);
+    handleTypeChange(event.target.value)
   };
 
   return (

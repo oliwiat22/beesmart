@@ -7,7 +7,7 @@ const Divider = ({ nazwa, typ, data, cena, opis }) => {
     return (
       <div className="divider">
         <h3>{nazwa}</h3>
-        <p>Typ: {typ}</p>
+        <p>Typ: {typ === 'ONLINE' ? 'Online' : 'Stacjonarnie'}</p>
         <p>Dlugosc: {data}</p>
         <p>Cena: {cena}</p>
         <p>Opis: {opis}</p>
@@ -18,17 +18,18 @@ const Divider = ({ nazwa, typ, data, cena, opis }) => {
 
 export const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     handleGet();
-  }, []);
+  }, [open]);
+
+  const handleModalOpen = (value) => setOpen(value);
 
   const handleGet = () => {
     getActivities().then((response) => {
       if (response.status === 200) {
         setActivities(response.data)
-        console.log('ac', activities)
-        console.log('res', response)
       } else {
         alert('Blad!')
       }
@@ -41,12 +42,16 @@ export const ActivitiesPage = () => {
         <div className="App">
           <div className="navbar">
             <div className="navbar-container">
-
-              <BasicModal/>
+              {
+                activities && activities.length > 0 && activities[0].teacher &&
+                  <BasicModal handleModalOpen={handleModalOpen} open={open}/>
+              }
 
               <div>
-                <button>Wyszukiarka</button>
-                <button>Mój kalendarz</button>
+                {
+                  activities && activities.length > 0 && !activities[0].teacher &&
+                    <button>Wyszukiwarka</button>
+                }
               </div>
               {/* {isLoggedIn ? (
                 <button onClick={handleLogout}>Wyloguj się</button>

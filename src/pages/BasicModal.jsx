@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -20,22 +21,50 @@ const style = {
   bgcolor: 'background.paper',
   boxShadow: 24,
   p: 4,
+  borderRadius: 5
 };
 
-export const BasicModal =() => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+export const BasicModal =({handleModalOpen, open}) => {
+  const [price, setPrice] = useState('');
+  const [type, setType] = useState('');
+  const [subject, setSubject] = useState('');
+  const [description, setDescription] = useState('');
+  const [dateTime, setDateTime] = useState('');
+
+  const handlePriceChange = (value) => {
+    setPrice(value);
+  };
+
+  const handleTypeChange = (value) => {
+    setType(value);
+  };
+
+  const handleSubjectChange = (event) => {
+    setSubject(event.target.value);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleDateChange = (value) => {
+    setDateTime(value.$d)
+  };
+
+  const handleOpen = () => handleModalOpen(true);
+  const handleClose = () => handleModalOpen(false);
 
   const addActivity = (e) => {
+    handleClose();
     e.preventDefault()
     let newActivity = {
       name: subject,
-      description: 'Nauka przedmiotu w domku',
+      description: description,
       type: type,
       location: '',
       price: price,
-      durationInMinutes: 60
+      durationInMinutes: 60,
+      availableTerms: [dateTime]
     };
     console.log('activity: ', newActivity)
     createNewActivity(newActivity)
@@ -55,16 +84,26 @@ export const BasicModal =() => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <form>
+        <Box sx={style}>
             
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+            Dodaj nowe zajęcia
+          </Typography>
+          <div style={{marginBottom: 15}}/>
+          <Calendar handleDateChange={handleDateChange}/>
+          <div style={{marginBottom: 15}}/>
+          <BasicSelect handleTypeChange={handleTypeChange}/>
+          <div style={{marginBottom: 15}}/>
+          <label> Nazwa zajęć <input type ="text" onChange={handleSubjectChange}/> </label>   
+          <label> Opis zajęć <input type ="text" onChange={handleDescriptionChange}/> </label>   
+          <div style={{marginBottom: 25, display: 'flex', justifyContent: 'center'}}>
+            <InputSlider handlePriceChange={handlePriceChange}/>
+          </div>
+          <div style={{display: 'flex', justifyContent: 'center'}}>
+            <button type ="submit" onClick={addActivity}> Potwierdź </button>
+          </div>
 
-            <Calendar/>
-            <BasicSelect/>
-            <label> Nazwa zajęć <input type ="text" /> </label>   
-            <label> Opis zajęć <input type ="text" /> </label>   
-            <InputSlider/>
-
-        </form>
+        </Box>
       </Modal>
     </div>
   );

@@ -10,11 +10,12 @@ const Input = styled(MuiInput)`
   width: 42px;
 `;
 
-export const InputSlider=() => {
+export const InputSlider = ({handlePriceChange}) => {
   const [value, setValue] = React.useState(30);
 
   const handleSliderChange = (event, newValue) => {
     setValue(newValue);
+    handlePriceChange(newValue);
   };
 
   const handleInputChange = (event) => {
