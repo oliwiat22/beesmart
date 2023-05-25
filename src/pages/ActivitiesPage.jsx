@@ -1,6 +1,7 @@
 import { getActivities } from '../api/activitiesApi';
 import './activitiesPage.css';
 import {useEffect, useState} from 'react';
+import {BasicModal} from './BasicModal';
 
 const Divider = ({ nazwa, typ, data, cena, opis }) => {
     return (
@@ -13,6 +14,7 @@ const Divider = ({ nazwa, typ, data, cena, opis }) => {
       </div>
     );
   };
+
 
 export const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
@@ -39,6 +41,9 @@ export const ActivitiesPage = () => {
         <div className="App">
           <div className="navbar">
             <div className="navbar-container">
+
+              <BasicModal/>
+
               <div>
                 <button>Wyszukiarka</button>
                 <button>Mój kalendarz</button>
