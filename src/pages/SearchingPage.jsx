@@ -1,22 +1,13 @@
 import { useState } from 'react';
 import './searchingPage.css';
+import { BasicModal } from './BasicModal';
 
 export const SearchingPage = () => {
-  const [price, setPrice] = useState('');
-  const [type, setType] = useState('');
-  const [subject, setSubject] = useState('');
   const [searchText, setSearchText] = useState('');
 
-  const handlePriceChange = (event) => {
-    setPrice(event.target.value);
-  };
 
   const handleTypeChange = (event) => {
     setType(event.target.value);
-  };
-
-  const handleSubjectChange = (event) => {
-    setSubject(event.target.value);
   };
 
   const handleSearchTextChange = (event) => {
@@ -25,38 +16,47 @@ export const SearchingPage = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    console.log('Cena:', price);
     console.log('Typ:', type);
-    console.log('Przedmiot:', subject);
     console.log('Wyszukiwany tekst:', searchText);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSearch}>
-        <label>
-          Cena:
-          <input type="range" min="0" max="100" value={price} onChange={handlePriceChange} />
-        </label>
-        <label>
-          Typ zajęć:
-          <select value={type} onChange={handleTypeChange}>
-            <option value="">-- Wybierz --</option>
-            <option value="ONLINE">Online</option>
-            <option value="IN_PERSON">Stacjonarne</option>
-          </select>
-        </label>
-        <label>
-          Przedmiot:
-          <input type="text" value={subject} onChange={handleSubjectChange} />
-        </label>
-        <label>
-          Wyszukaj:
+    <div className="App">
+
+      <div className="navbar">
+        <div className="navbar-container">
+          <BasicModal/>
+          <div>
+            <button>Wyszukiarka</button>
+            <button>Mój kalendarz</button>
+          </div>
+        </div>
+        </div>
+
+        <form onSubmit={handleSearch}>
+        <h1>Jakich zajęć szukasz?</h1>
           <input type="text" value={searchText} onChange={handleSearchTextChange} />
-        </label>
-        <button type="submit">Szukaj</button>
-      </form>
+          <button type="submit">Szukaj</button>
+        </form>
+        
+        <div className="content">
+            <h2>Moje zajęcia</h2>
+            { activities && 
+            <div className="divider-container">
+              {activities.map((zajecie, index) => (
+                <Divider
+                  key={index}
+                  nazwa={zajecie.activity.name}
+                  typ={zajecie.activity.type}
+                  data={zajecie.activity.durationInMinutes}
+                  cena={zajecie.activity.price}
+                  opis={zajecie.activity.description}
+                />
+              ))}
+            </div>
+            }
+          </div>
+    
     </div>
   );
-}
-
+};

@@ -42,11 +42,15 @@ export const ActivitiesPage = () => {
         <div className="App">
           <div className="navbar">
             <div className="navbar-container">
+<<<<<<< Updated upstream
               {
                 activities && activities.length > 0 && activities[0].teacher &&
                   <BasicModal handleModalOpen={handleModalOpen} open={open}/>
               }
 
+=======
+              <BasicModal/>
+>>>>>>> Stashed changes
               <div>
                 {
                   activities && activities.length > 0 && !activities[0].teacher &&
