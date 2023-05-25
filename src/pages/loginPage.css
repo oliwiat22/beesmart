@@ -1,7 +1,6 @@
 body {
 
     font-family: Arial, sans-serif;
-    background-color: #64c3e0;
 }
 
 
@@ -9,29 +8,6 @@ h1 {
     color: #566f77;
     text-align: center;
 }
-
-form {
-    justify-content: center;
-    display: inline-block;
-    align-items: center;
-  }
-  
-  label {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 300px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    margin-bottom: 10px;
-  }
   
   button {
     width: 150px;

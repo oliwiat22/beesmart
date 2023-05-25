@@ -11,3 +11,25 @@ export const getActivities = () => {
 
   return Axios.get(url);
 }
+
+export const joinActivity = (activityDateTime, activityId) => {
+  const url = 'http://localhost:8080/extracurricular/join/';
+  const join = {
+    startActivityAt : activityDateTime,
+    activityConfigurationId : activityId
+  }
+
+  return Axios.post(url, join);
+}
+
+export const search = (name, priceFrom, priceTo, type) => {
+  const url = 'http://localhost:8080/extracurricular/search/';
+  const join = {
+    name : name,
+    priceFrom : priceFrom,
+    priceTo : priceTo,
+    type : type
+  }
+
+  return Axios.post(url, join);
+}

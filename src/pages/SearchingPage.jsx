@@ -1,31 +1,11 @@
 import { useState } from 'react';
 import './searchingPage.css';
-import { createNewActivity } from '../api/activitiesApi';
 
 export const SearchingPage = () => {
   const [price, setPrice] = useState('');
   const [type, setType] = useState('');
   const [subject, setSubject] = useState('');
   const [searchText, setSearchText] = useState('');
-
-  const addActivity = (e) => {
-    e.preventDefault()
-    let newActivity = {
-      name: subject,
-      description: 'Nauka przedmiotu w domku',
-      type: type,
-      location: '',
-      price: price,
-      durationInMinutes: 60
-    };
-    console.log('activity: ', newActivity)
-    createNewActivity(newActivity)
-      .then((response) => {
-        console.log(response.data);
-      }).catch(error => {
-        console.log(error)
-      })
-  }
 
   const handlePriceChange = (event) => {
     setPrice(event.target.value);
@@ -45,8 +25,6 @@ export const SearchingPage = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
-    // Wykonaj akcję wyszukiwania na podstawie wprowadzonych danych
-    // Możesz np. wysłać zapytanie do API, przekazać dane do komponentu nadrzędnego itp.
     console.log('Cena:', price);
     console.log('Typ:', type);
     console.log('Przedmiot:', subject);
@@ -76,7 +54,6 @@ export const SearchingPage = () => {
           Wyszukaj:
           <input type="text" value={searchText} onChange={handleSearchTextChange} />
         </label>
-        <button onClick={addActivity}>Dodaj activity</button>
         <button type="submit">Szukaj</button>
       </form>
     </div>

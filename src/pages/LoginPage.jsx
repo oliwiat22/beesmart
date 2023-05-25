@@ -40,8 +40,10 @@ export const LoginPage = () => {
           <h1>Cześć!</h1>
           <form onSubmit = {handleLogin}>
 
-            <label>Nazwa użytkownika: <input type ="text" required value = {username} onChange={handleUsernameChange} /> </label>
-            <label> Hasło: <input type="password" required value = {password} onChange = {handlePasswordChange} /> </label>
+            <label>Nazwa użytkownika: </label>
+            <input type ="text" required value = {username} onChange={handleUsernameChange} />
+            <label>Hasło: </label>
+            <input type="password" required value = {password} onChange = {handlePasswordChange} /> 
 
             <button type ="submit"> Zaloguj się </button>
             <a href='/register' className='button' id='register-button'> Zarejestruj się </a>

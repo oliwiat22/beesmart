@@ -8,6 +8,7 @@ import {BasicSelect} from './BasicSelect';
 import {BasicTextFields} from './BasicTextFields';
 import {BasicTextFieldsdes} from './BasicTextFieldsdes';
 import {InputSlider} from './InputSlider';
+import { createNewActivity } from '../api/activitiesApi';
 
 
 const style = {
@@ -25,6 +26,25 @@ export const BasicModal =() => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const addActivity = (e) => {
+    e.preventDefault()
+    let newActivity = {
+      name: subject,
+      description: 'Nauka przedmiotu w domku',
+      type: type,
+      location: '',
+      price: price,
+      durationInMinutes: 60
+    };
+    console.log('activity: ', newActivity)
+    createNewActivity(newActivity)
+      .then((response) => {
+        console.log(response.data);
+      }).catch(error => {
+        console.log(error)
+      })
+  }
 
   return (
     <div>
