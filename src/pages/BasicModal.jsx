@@ -35,19 +35,18 @@ export const BasicModal =() => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <form>
+            
 
             <Calendar/>
             <BasicSelect/>
-            <BasicTextFields/>
-            <BasicTextFieldsdes/>
+            <label> Nazwa zajęć <input type ="text" /> </label>   
+            <label> Opis zajęć <input type ="text" /> </label>   
             <InputSlider/>
 
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
-        </Box>
+        </form>
       </Modal>
     </div>
   );
-}
+
+  }
