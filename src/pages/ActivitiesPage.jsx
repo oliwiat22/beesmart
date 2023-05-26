@@ -49,7 +49,6 @@ export const ActivitiesPage = () => {
 
               <div>
                 {
-                  activities && activities.length > 0 && !activities[0].teacher &&
                     <button>Wyszukiwarka</button>
                 }
               </div>
