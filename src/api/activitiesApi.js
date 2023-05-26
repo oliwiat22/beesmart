@@ -19,7 +19,7 @@ export const joinActivity = (activityDateTime, activityId) => {
     activityConfigurationId : activityId
   }
 
-  return Axios.post(url, join);
+  return Axios.put(url, join);
 }
 
 export const search = (name, priceFrom, priceTo, type) => {

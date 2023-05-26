@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { useNavigate } from 'react-router-dom';
 
 
 const Divider = ({ name, type, durationInMinutes, price, description, terms }) => {
@@ -68,6 +69,7 @@ const Terms = ({ terms }) => {
 export const ActivitiesPage = () => {
   const [activities, setActivities] = useState([]);
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     handleGet();
@@ -98,8 +100,8 @@ export const ActivitiesPage = () => {
 
             <div>
               {
-                activities && !activities.teacher &&
-                  <button>Wyszukiwarka</button>
+                activities && 
+                  <button onClick={() => navigate('/search')}>Wyszukiwarka</button>
               }
             </div>
             {/* {isLoggedIn ? (
