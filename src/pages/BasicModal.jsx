@@ -30,6 +30,8 @@ export const BasicModal =({handleModalOpen, open}) => {
   const [subject, setSubject] = useState('');
   const [description, setDescription] = useState('');
   const [dateTime, setDateTime] = useState('');
+  const [durationInMinutes, setDuartionInMinutes] = useState('');
+
 
   const handlePriceChange = (value) => {
     setPrice(value);
@@ -51,6 +53,11 @@ export const BasicModal =({handleModalOpen, open}) => {
     setDateTime(value.$d)
   };
 
+  const handleDurationInMinutesChange = (value) => {
+    console.log(value.target.value);
+    setDuartionInMinutes(value.target.value)
+  };
+
   const handleOpen = () => handleModalOpen(true);
   const handleClose = () => handleModalOpen(false);
 
@@ -63,7 +70,7 @@ export const BasicModal =({handleModalOpen, open}) => {
       type: type,
       location: '',
       price: price,
-      durationInMinutes: 60,
+      durationInMinutes: durationInMinutes,
       availableTerms: [dateTime]
     };
     console.log('activity: ', newActivity)
@@ -95,7 +102,9 @@ export const BasicModal =({handleModalOpen, open}) => {
           <BasicSelect handleTypeChange={handleTypeChange}/>
           <div style={{marginBottom: 15}}/>
           <label> Nazwa zajęć <input type ="text" onChange={handleSubjectChange}/> </label>   
-          <label> Opis zajęć <input type ="text" onChange={handleDescriptionChange}/> </label>   
+          <label> Opis zajęć <input type ="text" onChange={handleDescriptionChange}/> </label> 
+          <label> Długość zajęć <input type ="text" onChange={handleDurationInMinutesChange}/> </label>   
+  
           <div style={{marginBottom: 25, display: 'flex', justifyContent: 'center'}}>
             <InputSlider handlePriceChange={handlePriceChange}/>
           </div>
